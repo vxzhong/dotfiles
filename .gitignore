@@ -2,3 +2,6 @@
 autoload/
 bundle/
 
+.DS_Store
+
+
