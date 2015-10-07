@@ -52,7 +52,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(autojump bower brew brew-cask colored-man git golang gulp man node npm osx pip zsh-completions zsh-syntax-highlighting)
+plugins=(autojump bower brew brew-cask colored-man git golang gulp man node npm osx pip zsh-completions zsh-syntax-highlighting)
 
 # User configuration
 
@@ -91,3 +91,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
+export NVM_DIR="/Users/zhangzhong/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
