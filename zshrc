@@ -91,6 +91,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+alias bup="brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup"
+alias dbc="rm -v /Users/zhangzhong/Library/Application\ Support/Beyond\ Compare/registry.dat"
+alias chds="open ~/Applications/Google\ Chrome.app --args --disable-web-security
+"
+
 
 export NVM_DIR="/Users/zhangzhong/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

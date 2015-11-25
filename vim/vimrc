@@ -91,11 +91,11 @@ Plugin 'tpope/vim-repeat'
 Plugin 'matchit.zip'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'scrooloose/syntastic'
 "}}}
 
 " tag {{{
 Plugin 'majutsushi/tagbar'
-", { 'on': 'TagbarToggle'}
 "}}}
 
 " Find {{{
@@ -108,13 +108,22 @@ Plugin 'mileszs/ack.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
 "}}}
 
 " Go {{{
-"Plugin 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 "}}}
 
-" javascript {{{
+" ruby  {{{
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+"}}}
+
+" html&css javascript {{{
+Plugin 'mattn/emmet-vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
 "}}}
 
@@ -483,6 +492,19 @@ if isdirectory(expand('~/.vim/bundle/vim-airline'))
 endif
 "}}}
 
+" syntastic {{{
+if isdirectory(expand('~/.vim/bundle/syntastic'))
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+endif
+""}}}
+
 " ack.vim {{{
 if isdirectory(expand('~/.vim/bundle/ack.vim'))
   if executable('ag')
@@ -564,5 +586,19 @@ if isdirectory(expand('~/.vim/bundle/YouCompleteMe'))
     nnoremap <leader>tc :YcmCompleter GoToDeclaration<CR>
 endif
 "}}}
+
+
+" tern for vim {{{
+if isdirectory(expand('~/.vim/bundle/tern_for_vim'))
+
+endif
+""}}}
+
+
+" vim-javascript {{{
+if isdirectory(expand('~/.vim/bundle/vim-javascript'))
+  let g:javascript_enable_domhtmlcss = 1
+endif
+""}}}
 
 " end plugin settings}}}
