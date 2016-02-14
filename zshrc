@@ -95,6 +95,7 @@ alias bup="brew update && brew cleanup && brew cask cleanup"
 alias dbc="rm -v /Users/zhangzhong/Library/Application\ Support/Beyond\ Compare/registry.dat"
 alias chds="open ~/Applications/Google\ Chrome.app --args --disable-web-security
 "
+export ANDROID_HOME="/usr/local/opt/android-sdk"
 
 
 export NVM_DIR="/Users/zhangzhong/.nvm"
