@@ -105,26 +105,26 @@ Plugin 'mileszs/ack.vim'
 "}}}
 
 " autocomplete {{{
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+"Plugin 'Valloric/YouCompleteMe'
+" Plugin 'marijnh/tern_for_vim'
 "}}}
 
 " Go {{{
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 "}}}
 
 " ruby  {{{
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-rake'
+" Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-bundler'
+" Plugin 'tpope/vim-rake'
 "}}}
 
 " html&css javascript {{{
-Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'pangloss/vim-javascript'
+" Plugin 'kchmck/vim-coffee-script'
 "}}}
 
 call vundle#end()
@@ -174,7 +174,7 @@ set shortmess& shortmess+=I "Don't give the message when starting Vim :intro
 set showcmd "Show (partial) command in the last line of the screen
 set showmatch "Briefly jump to the matching one
 set spell " Spell checking on
-set spelllang=en,cjk "Spell checking language
+set spelllang=en "Spell checking language
 set textwidth=0 "Maximum width of text that is being inserted
 set viewoptions=cursor,folds "Changes the effect of the :mkview command
 set viminfo+=! "Store information when you exit Vim for later
