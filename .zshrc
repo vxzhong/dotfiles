@@ -1,14 +1,13 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/zhangzhong/.oh-my-zsh
 
-# zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="pygmalion"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,18 +51,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump bower brew brew-cask colored-man git golang gulp man node osx pip zsh-completions zsh-syntax-highlighting)
+plugins=(git colored-man colorize brew osx zsh-syntax-highlighting zsh-nvm)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-
-# autojump
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -84,30 +78,11 @@ source $ZSH/oh-my-zsh.sh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-#
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-alias bup="brew update; brew cleanup; brew cask cleanup"
-alias dbc="rm -v /Users/zhangzhong/Library/Application\ Support/Beyond\ Compare/registry.dat"
-alias chds="open -a Google\ Chrome --args --disable-web-security --user-data-dir=/Users/zhangzhong/Library/Application\ Support/Google/Chrome/personal"
-alias phptag="ctags --languages=php --extra=* --fields=* --recurse ."
-alias npm="npm --registry=https://registry.npm.taobao.org --cache=$HOME/.npm/.cache/cnpm --disturl=https://npm.taobao.org/dist --userconfig=$HOME/.cnpmrc"
-alias sshtq="ssh root@114.215.159.150 -p 20002"
-alias sshaq="ssh root@115.28.134.113 -p 20002"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-export ANDROID_HOME="/usr/local/opt/android-sdk"
-
-unsetopt share_history
-
-export NVM_DIR="/Users/zhangzhong/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-
-# tabtab source for yo package
-# uninstall by removing these lines or running `tabtab uninstall yo`
-[[ -f /Users/zhangzhong/.nvm/versions/node/v5.6.0/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh ]] && . /Users/zhangzhong/.nvm/versions/node/v5.6.0/lib/node_modules/yo/node_modules/tabtab/.completions/yo.zsh
+# Add env.sh
+source ~/Projects/dotfiles/env.sh
