@@ -7,7 +7,8 @@ packages = [
   'file-icons',
   'minimap',
   'pigments',
-  'linter'
+  'linter',
+  'language-babel'
 ]
 
 installedPackage = subprocess.run(
