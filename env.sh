@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+export fpath=(/usr/local/share/zsh-completions $fpath)
 
 #autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
