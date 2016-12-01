@@ -1,10 +1,11 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "http.proxy":"http://127.0.0.1:50732",
+    "http.proxyStrictSSL":false,
+    "extensions.autoUpdate":true,
     "editor.fontSize": 14,
     "editor.tabSize": 2,
     "javascript.validate.enable": false,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 10000,
-    "python.pythonPath": "/usr/local/bin/python3"
-    // "typescript.check.tscVersion": false
+    "python.pythonPath": "/usr/local/bin/python3",
+    "vsicons.dontShowNewVersionMessage": true
   }

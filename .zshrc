@@ -51,7 +51,7 @@ ZSH_THEME="pygmalion"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew brew-cask colored-man colorize gem golang nvm osx rails vagrant zsh-syntax-highlighting)
+plugins=(git colored-man colorize golang nvm osx vagrant zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,9 +84,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 export GOPATH=$HOME/Projects/go
+export ANDROID_HOME=/usr/local/opt/android-sdk
+
 export PATH="$PATH:$HOME/.composer/vendor/bin:$GOPATH/bin"
-export fpath=(/usr/local/share/zsh-completions $fpath)
+#export http_proxy="http://127.0.0.1:50732"
+#export https_proxy="http://127.0.0.1:50732"
 
 #autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
@@ -94,10 +99,13 @@ export fpath=(/usr/local/share/zsh-completions $fpath)
 #Alias
 alias bup="brew update; brew cleanup; brew cask cleanup"
 alias dbc="rm -v /Users/zhangzhong/Library/Application\ Support/Beyond\ Compare/registry.dat"
-alias chds="open -a Google\ Chrome --args --disable-web-security --user-data-dir=/Users/zhangzhong/Library/Application\ Support/Google/Chrome/personal"
+alias chds="open -n -a Google\ Chrome --args --disable-web-security --user-data-dir=/Users/zhangzhong/Library/Application\ Support/Google/Chrome/personal"
 alias phptag="ctags --languages=php --extra=* --fields=* --recurse ."
 alias sshtq="ssh root@114.215.159.150 -p 20002"
 alias sshaq="ssh root@115.28.134.113 -p 20002"
+alias ccp='composer create-project'
 
-#export http_proxy="http://127.0.0.1:64574"
-#export https_proxy="http://127.0.0.1:64574"
+function homestead() {
+  ( cd ~/Github/Homestead && vagrant $* )
+}
+
