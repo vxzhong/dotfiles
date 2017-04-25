@@ -1,11 +1,23 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "http.proxy":"http://127.0.0.1:50732",
-    "http.proxyStrictSSL":false,
+    // "http.proxy":"http://127.0.0.1:61613",
+    // "http.proxyStrictSSL":false,
+    "window.title": "${activeEditorMedium}${separator}${rootName}",
     "extensions.autoUpdate":true,
     "editor.fontSize": 14,
     "editor.tabSize": 2,
     "javascript.validate.enable": false,
     "python.pythonPath": "/usr/local/bin/python3",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "phpcs.standard": "PSR2",
+    "vsicons.projectDetection.disableDetect": true,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": true,
+    "workbench.colorTheme": "Monokai Dimmed",
+    "[cpp]": {
+      "editor.quickSuggestions": false
+    },
+    "[c]": {
+      "editor.quickSuggestions": false
+    }
   }

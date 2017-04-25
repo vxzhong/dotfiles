@@ -4,87 +4,87 @@ import os
 import sys
 import pysftp
 
-cnopts = pysftp.CnOpts()
-cnopts.hostkeys = None
-default_connection_info = {
-    'host': '114.215.159.150',
-    'username': 'root',
-    'password': 'qcastRSS!@#$',
-    'cnopts': cnopts,
-    'port': 20002
-}
+
+# 将本地文件拷贝到远程路径下
+def _sftp_upload_file(connection, file_path, remote_path):
+    if not connection.exists(remote_path):
+        connection.makedirs(remote_path)
+
+    with connection.cd(remote_path):
+        connection.put(file_path)
+
+    print('Copy file [%s] to remote [%s], SUCCESS!' % (file_path, remote_path))
+
+
+# 将本地目录拷贝到远程路径下
+def _sftp_upload_directory(connection, directory_path, remote_path):
+    if not connection.exists(remote_path):
+        connection.makedirs(remote_path)
+
+    directory = os.path.split(directory_path)[1]
+    remote_directory_path = os.path.join(remote_path, directory)
+
+    if not connection.exists(remote_directory_path):
+        connection.mkdir(remote_directory_path)
+
+    connection.put_r(directory_path, remote_directory_path)
+    print('Copy directory [%s] to remote [%s], SUCCESS!' % (directory, remote_directory_path))
+
+
+def _sftp_upload(file_path, remote_path):
+    options = pysftp.CnOpts()
+    options.hostkeys = None
+    info = get_host_info()
+    info['cnopts'] = options
+
+    with pysftp.Connection(**info) as sftp:
+        is_file = os.path.isfile(file_path)
+        if is_file:
+            _sftp_upload_file(sftp, file_path, remote_path)
+        else:
+            _sftp_upload_directory(sftp, file_path, remote_path)
+
+
+def get_host_info():
+    return {
+        'host': '114.215.159.150',
+        'username': 'root',
+        'password': 'qcastRSS!@#$',
+        'port': 20002
+    }
+
 
 default_remote_path = '/var/www/zhangzhong'
 
-def sftp_up(local_path=None, connection_info=None, remote_path=default_remote_path):
-    promote = False
-    if local_path is None:
-        promote = True
-        local_path = os.getcwd()
 
-    real_path = os.path.realpath(local_path)
-    if not os.path.exists(real_path):
-        print("%s 不存在" % (real_path,))
+def sftp_upload(file=None, remote_path=None):
+    promote = False
+    if file is None:
+        promote = True
+        file = os.getcwd()
+
+    file_path = os.path.realpath(file)
+    if not os.path.exists(file_path):
+        print("%s 不存在" % (file_path,))
         return
 
-    is_file = os.path.isfile(real_path)
+    is_file = os.path.isfile(file_path)
 
     if promote:
-        filetype = '文件' if is_file else '目录'
-        answer = input('是否要上传%s%s?' % (real_path, filetype))
+        filetype = 'file' if is_file else 'directory'
+        answer = input('Upload [%s] %s?' % (file_path, filetype))
         answer = answer.lower()
         if answer not in ('y', 'yes'):
             return
 
-    if connection_info is None:
-        cninfo = default_connection_info
+    if remote_path is None:
+        remote_path = default_remote_path
 
-    with pysftp.Connection(**cninfo) as sftp:
-        if is_file:
-            with sftp.cd(remote_path):
-                sftp.put(real_path)
-        else:
-            lastpath = os.path.split(real_path)[1]
-            new_remote_path = os.path.join(remote_path, lastpath)
+    _sftp_upload(file_path, remote_path)
 
-            if not sftp.exists(new_remote_path):
-                sftp.mkdir(new_remote_path)
-
-            git_ignore_dirs = gitignore(real_path)
-
-            for entry in os.listdir(real_path):
-                if git_ignore_dirs:
-                    if os.path.isdir(os.path.join(real_path, entry)):
-                        if entry + '/' in git_ignore_dirs:
-                            continue
-                    else:
-                        if entry in git_ignore_dirs:
-                            continue
-
-                print(real_path, new_remote_path, entry)
-                a_path = os.path.join(real_path, entry)
-                a_remote_path = os.path.join(new_remote_path, entry)
-                if os.path.isfile(a_path):
-                    with sftp.cd(new_remote_path):
-                        sftp.put(entry)
-                else:
-                    if not sftp.exists(a_remote_path):
-                        sftp.mkdir(a_remote_path)
-                    sftp.put_r(a_path, a_remote_path)
-
-def gitignore(directory):
-    ignored = ['.git/']
-    try:
-        gitignorepath = os.path.join(directory, '.gitignore')
-        gitignored = open(gitignorepath).readlines()
-        gitignored = [i.strip() for i in gitignored]
-        ignored.extend(gitignored)
-        return ignored
-    except OSError:
-        return ignored
-
-if len(sys.argv) > 1:
-    sftp_up(sys.argv[1])
+if len(sys.argv) > 2:
+    sftp_upload(sys.argv[1], sys.argv[2])
+elif len(sys.argv) > 1:
+    sftp_upload(sys.argv[1])
 else:
-    sftp_up()
-
+    sftp_upload()
